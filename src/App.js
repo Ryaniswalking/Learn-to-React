@@ -1,6 +1,23 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from "./Person/Person"
+import Person from "./Person/Person";
+import styled from 'styled-components'
+
+
+const StyledButton = styled.button` 
+  background-color: ${props => props.alt ? 'red' : 'green'};
+  color: white;
+  font: inherit;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointe;
+  
+  &:hover {
+    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+    color: black;
+  }
+`;
+
 
 
 //one of the way to create a react componenet
@@ -71,14 +88,7 @@ class App extends Component {
   //React called rendor to display to the screen
   render() {
 
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: "inherit",
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
+   
 
     let persons = null;
 
@@ -98,7 +108,11 @@ class App extends Component {
         </div> 
       );
       //toggle the color of the button to red after clicked
-      style.backgroundColor = 'red';
+      // style.backgroundColor = 'red';
+      // style[':hover'] = {
+      //   backgroundColor: 'salmon',
+      //   color: 'black'
+      // }
     }
 
     //array of strings joined with the space
@@ -111,25 +125,25 @@ class App extends Component {
     }
 
     return (
-      //'class' cant be used because it is reserved is JS, Use className
-      <div className="App">
-        <h1>Hi my name is Ryan</h1>
-
       
-        <p className={classes.join(' ')}>This is really working!</p>
-        
+        <div className="App">
+          <h1>Hi my name is Ryan
+          </h1>
 
-        <button 
-          style={style}
-          onClick={this.togglePersonsHandler}>Toggle Persons
-        </button>
-
-        {/* if toggled then show persons from the template */}
-        {persons}
         
+          <p className={classes.join(' ')}>This is really working!</p>
+          
+
+          <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>Toggle Persons
+          </StyledButton>
+
+          {/* if toggled then show persons from the template */}
+          {persons}
+          
+        
+        </div>
+     
       
-      </div>
-      //cant add anything beyond the app div. best practice is wrap it route element
     );
 
     //method that takes at least 3 arguments
@@ -140,4 +154,6 @@ class App extends Component {
   }
 }
 
+//higher order componenet
+//component wrapping your componenent which adds more functionality
 export default App;
