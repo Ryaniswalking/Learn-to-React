@@ -1,22 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from "./Person/Person";
-import styled from 'styled-components'
 
 
-const StyledButton = styled.button` 
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointe;
-  
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
+
 
 
 
@@ -134,8 +121,8 @@ class App extends Component {
           <p className={classes.join(' ')}>This is really working!</p>
           
 
-          <StyledButton alt={this.state.showPersons} onClick={this.togglePersonsHandler}>Toggle Persons
-          </StyledButton>
+          <button className="button" onClick={this.togglePersonsHandler}>Toggle Persons
+          </button>
 
           {/* if toggled then show persons from the template */}
           {persons}
