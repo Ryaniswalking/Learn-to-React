@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from "./Person/Person";
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 
 
@@ -78,50 +79,48 @@ class App extends Component {
    
 
     let persons = null;
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
         <div>
           {/* map converts every element in an array to something else */}
           {this.state.persons.map((person, index) => {
-            return <Person 
-              click={() => this.deletePersonHandler(index)}
-              name={person.name} 
-              age={person.age} 
-              key={person.id}
-              changed={(event) => this.nameChangedHandler(event, person.id)} />
+            return <ErrorBoundary key={person.id}>
+              <Person 
+                click={() => this.deletePersonHandler(index)}
+                name={person.name} 
+                age={person.age} 
+                changed={(event) => this.nameChangedHandler(event, person.id)} />
+              </ErrorBoundary>
           })}
     
         </div> 
       );
       //toggle the color of the button to red after clicked
-      // style.backgroundColor = 'red';
-      // style[':hover'] = {
-      //   backgroundColor: 'salmon',
-      //   color: 'black'
-      // }
+      btnClass = classes.Red;
     }
 
     //array of strings joined with the space
-    const classes = [];
+    const assignedClasses = [];
     if(this.state.persons.length <= 2){
-      classes.push('red'); //classes = ['red']
+      assignedClasses.push(classes.red); //classes = ['red']
     }
     if(this.state.persons.length <= 1) {
-      classes.push('bold');  //classes = ['red','bold'];
+      assignedClasses.push(classes.bold);  //classes = ['red','bold'];
     }
 
     return (
       
-        <div className="App">
+        <div className={classes.App}>
           <h1>Hi my name is Ryan
           </h1>
 
         
-          <p className={classes.join(' ')}>This is really working!</p>
+          <p className={assignedClasses.join(' ')}>This is really working!</p>
           
 
-          <button className="button" onClick={this.togglePersonsHandler}>Toggle Persons
+          <button className={btnClass} onClick={this.togglePersonsHandler}>Toggle Persons
           </button>
 
           {/* if toggled then show persons from the template */}
