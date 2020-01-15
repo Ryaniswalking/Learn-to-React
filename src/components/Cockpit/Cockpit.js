@@ -35,7 +35,7 @@ const cockpit = (props) => {
     //array of strings joined with the space
     const assignedClasses = [];
     let btnClass = '';
-    if(props.showPerson){
+    if(props.showPersons){
         btnClass = classes.Red;
     }
     

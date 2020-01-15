@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit"
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
-
+import withClass from '../HOC/WithClass';
+import Aux from '../HOC/Auxiliary'
 
 
 
@@ -129,7 +129,8 @@ class App extends Component {
 
     return (
       
-        <div className={classes.App}>
+        <Aux>
+          {/* <WithClass classes={classes.App}> */}
           <button onClick={() => {
             this.setState({ showCockpit: false});
           }}
@@ -144,9 +145,10 @@ class App extends Component {
           ): null}
           {/* if toggled then show persons from the template */}
           {persons}
-          
+          {/* </WithClass> */}
+        </Aux>
         
-        </div>
+        
      
       
     );
@@ -161,4 +163,4 @@ class App extends Component {
 
 //higher order componenet
 //component wrapping your componenent which adds more functionality
-export default App;
+export default withClass(App, classes.App);
