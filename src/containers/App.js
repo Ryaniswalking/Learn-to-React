@@ -30,7 +30,8 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPersons: false,
-    showCockpit: true 
+    showCockpit: true,
+    changeCounter: 0
   }
 
 
@@ -85,7 +86,13 @@ class App extends Component {
     //changes name of person based on the specific index
     persons[personIndex] = person;
 
-    this.setState({persons: persons});
+    //reccomended way of updating the state when you are depending on the old state
+    this.setState((prevState, props) => {
+      return{
+        persons: persons, 
+        changeCounter: prevState.changeCounter +1
+      };
+    });     
 } 
 
 

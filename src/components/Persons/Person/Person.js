@@ -1,7 +1,9 @@
 //dont need component cuz were not using a component just making a function
 import React, {Component} from 'react';
-import classes from"./Person.css"
-import Aux from '../../../HOC/Auxiliary'
+import PropTypes from 'prop-types';
+import classes from"./Person.css";
+import Aux from '../../../HOC/Auxiliary';
+import withClass from '../../../HOC/WithClass';
 
 
 class Person extends Component{
@@ -20,8 +22,15 @@ class Person extends Component{
     }
 }
 
+//react will watchout for and give warning if you give wrong prop
+Person.propTypes = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
+};
 
-export default Person;
+export default withClass(Person, classes.Person);
 
 
 

@@ -13,7 +13,7 @@ const withClass = (WrappedComponent, className) => {
     //function that returns a functional component
     return props => (
         <div className={className}>
-            <WrappedComponent />
+            <WrappedComponent {...props} />
         </div>
     );
 };
