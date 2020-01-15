@@ -7,17 +7,8 @@ import classes from"./Person.css"
 
 //function name should be the same name as component
 const person = (props) => {
-    // const style = {
-    //     '@media (min-width: 500px)': {
-    //         width: '400px'
-    //     }
-    // };
-
-
-    //X is some random number
-    //cannot define classes, can only call functions
-
- 
+   
+    console.log('Persons.js rendering...');
 
     return (
         

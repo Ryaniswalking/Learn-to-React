@@ -11,6 +11,16 @@ import ErrorBoundary from '../ErrorBoundary/ErrorBoundary';
 
 //one of the way to create a react componenet
 class App extends Component {
+
+  //lifecycle hook #1
+  constructor(props){
+    super(props);
+    console.log('App.js constructor')
+    
+    
+  }
+
+
   //only available for components, but also for hooks
   state = {
     persons: [
@@ -22,6 +32,20 @@ class App extends Component {
     showPersons: false 
   }
 
+
+  //lifecycle hook #2
+  static getDerivedStateFromProps(props, state){
+    console.log('App.js getDerivedFromProps', props)
+    return state;
+  }
+
+  componentWillMount(){
+    console.log('App.js ComponenetWillMount');
+  }
+
+  componentDidMount(){
+    console.log('App.js component did mount')
+  }
 
 
   //handler for then someone inputs in the input
@@ -73,11 +97,11 @@ class App extends Component {
     this.setState({showPersons: !doesShow});
   }
 
-
+  //lifecycle hook#3
   //React called rendor to display to the screen
   render() {
 
-   
+    console.log('App.js render')
 
     let persons = null;
     
@@ -95,6 +119,7 @@ class App extends Component {
       
         <div className={classes.App}>
           <Cockpit 
+            title={this.props.appTitle}
             showPersons = {this.state.showPersons}
             persons = {this.state.persons}
             clicked = {this.togglePersonsHandler}  />
