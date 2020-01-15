@@ -39,10 +39,10 @@ const cockpit = (props) => {
         btnClass = classes.Red;
     }
     
-    if(props.persons.length <= 2){
+    if(props.personsLength <= 2){
       assignedClasses.push(classes.red); //classes = ['red']
     }
-    if(props.persons.length <= 1) {
+    if(props.personLength <= 1) {
       assignedClasses.push(classes.bold);  //classes = ['red','bold'];
     }
 
@@ -59,4 +59,6 @@ const cockpit = (props) => {
     );
 };
 
-export default cockpit;
+//React will memorize and only if it changes it will re render it
+//good way for optimization with functional components
+export default React.memo(cockpit);
